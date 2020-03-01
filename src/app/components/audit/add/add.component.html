@@ -1,0 +1,60 @@
+<div class="containe">
+  <div class="car">
+    <div class="card-header">
+      <h3>Add Audit</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="auditForm" novalidate>
+        <div class="form-group">
+          <label for="clients">Client</label>
+          <select formControlName="client" name="clients" [ngClass]="{ 'is-invalid': auditForm.controls['client'].errors && auditForm.controls['client'].dirty}">
+            <option disabled selected [ngValue]="null">Select a Client</option>
+            <option *ngFor="let item of clients;" [ngValue]="item">
+              {{item.name}}
+            </option>
+          </select>
+          <div *ngIf="auditForm.controls['client'].errors && auditForm.controls['client'].dirty" class="invalid-feedback">
+            <div *ngIf="auditForm.controls['client'].errors.required">Please, select a client</div>
+          </div>
+        </div>
+        <div *ngIf="auditForm.get('client')" class="row">
+          <div class="col-sm">
+            <div class="form-group">
+              <label for="tdcs">Credit Cards</label>
+              <select formControlName="card" name="tdcs" [ngClass]="{ 'is-invalid': auditForm.controls['card'].errors && auditForm.controls['card'].dirty}">
+                <option disabled selected [ngValue]="null">Select a card</option>
+                <option *ngFor="let card of (auditForm.get('client').value ? auditForm.get('client').value.cards : [])" [ngValue]="card">
+                  {{card.number}}
+                </option>
+              </select>
+              <div *ngIf="auditForm.controls['card'].errors && auditForm.controls['card'].dirty" class="invalid-feedback">
+                <div *ngIf="auditForm.controls['card'].errors.required">Please, select a credit card</div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="audit.card" class="col-sm">
+            <div class="form-group">
+              <label for="type">Type: {{audit.card.type}}</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <input type="text" formControlName="amount" name="amount" class="form-control" maxlength="12" [ngClass]="{ 'is-invalid': auditForm.controls['amount'].errors && auditForm.controls['amount'].dirty}">
+          <div *ngIf="auditForm.controls['amount'].errors && auditForm.controls['amount'].dirty" class="invalid-feedback">
+            <div *ngIf="auditForm.controls['amount'].errors.required">Please, enter a amount</div>
+            <div *ngIf="auditForm.controls['amount'].errors.maxlength">Max of 10 characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="textarea" formControlName="description" name="description" class="form-control" [ngClass]="{ 'is-invalid': auditForm.controls['description'].errors && auditForm.controls['description'].dirty}">
+          <div *ngIf="auditForm.controls['description'].errors && auditForm.controls['description'].dirty" class="invalid-feedback">
+            <div *ngIf="auditForm.controls['description'].errors.required">Please, enter a descripcion</div>
+          </div>
+        </div>
+        <button (click)="save(audit)" [disabled]="auditForm.invalid" class="btn btn-danger">Save</button>
+      </form>
+    </div>
+  </div>
+</div>

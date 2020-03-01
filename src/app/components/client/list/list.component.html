@@ -1,0 +1,36 @@
+<div class="containe container-sm">
+  <div>
+    <button (click)="add()" class="btn btn-primary" style="margin: 10px">New</button>
+  </div>
+  <div class="car">
+    <div class="card-header">
+      <h5>Clients</h5>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead class="text-center">
+          <th>ID</th>
+          <th>Name</th>
+          <th>City</th>
+          <th>Phone</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of clients" class="text-center">
+            <td>{{client.id}}</td>
+            <td>{{client.name}}</td>
+            <td>{{client.city}}</td>
+            <td>{{client.phone}}</td>
+            <td>
+              <button (click)="edit(client)" class="btn btn-warning btn-sm">Edit</button>
+            </td>
+            <td>
+              <button (click)="delete(client)" class="btn btn-danger btn-sm" style="margin-left: 109x;">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

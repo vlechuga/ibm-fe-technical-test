@@ -1,0 +1,36 @@
+<div class="containe container-sm">
+  <div>
+    <button (click)="add()" class="btn btn-primary" style="margin: 10px">New</button>
+  </div>
+  <div class="car">
+    <div class="card-header">
+      <h5>Credit Cards</h5>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead class="text-center">
+          <th>ID</th>
+          <th>Number</th>
+          <th>Type</th>
+          <th>Client</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let creditCard of creditCards" class="text-center">
+            <td>{{creditCard.id}}</td>
+            <td>{{creditCard.number}}</td>
+            <td>{{creditCard.type}}</td>
+            <td>{{creditCard.client.name}}</td>
+            <td>
+              <button (click)="edit(creditCard)" class="btn btn-warning btn-sm">Edit</button>
+            </td>
+            <td>
+              <button (click)="delete(creditCard)" class="btn btn-danger btn-sm" style="margin-left: 109x;">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
